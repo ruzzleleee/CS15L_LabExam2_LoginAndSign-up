@@ -1,0 +1,212 @@
+/* Reproduced from Figma file KIrKIcxra5Owr40GVqlyfg
+   Frames: login (20:44), sign-up "Frame" (20:60), confirmations (45:7, 45:13)
+   Design size: 1404 x 789, all positions in px as in Figma. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Aguafina Script', cursive;
+  color: #000000;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ---------- Frame (1404 x 789, #E8D0A7, radius 20) ---------- */
+.stage {
+  position: relative;
+  flex: none;
+  width: 1404px;
+  height: 789px;
+  background: #e8d0a7;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.screen,
+.form {
+  position: absolute;
+  inset: 0;
+}
+
+/* ---------- Background photos ----------
+   Figma image fills use CROP, so the image is scaled up and shifted
+   (login: scale 0.7255 x 0.9996, sign-up: 0.7118 x 0.9777). */
+.bg {
+  position: absolute;
+  border-radius: 20px;
+  background-repeat: no-repeat;
+}
+
+.bg-login {
+  left: -4px;
+  top: 0;
+  width: 859px;
+  height: 789px;
+  background-image: url('images/login-bg.jpg');
+  background-size: 1184px 789.33px;
+  background-position: 0 -0.17px;
+}
+
+.bg-signup {
+  left: 0;
+  top: 0;
+  width: 862px;
+  height: 789px;
+  background-image: url('images/signup-bg.jpg');
+  background-size: 1211px 807px;
+  background-position: -8.96px -9.49px;
+}
+
+/* ---------- Text (Aguafina Script Regular, auto line-height) ---------- */
+.t {
+  position: absolute;
+  margin: 0;
+  width: 395px;
+  font-family: 'Aguafina Script', cursive;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: #000000;
+  text-align: left;
+}
+
+.t-40 { font-size: 40px; line-height: 62px; }
+.t-24 { font-size: 24px; line-height: 37px; }
+.t-20 { font-size: 20px; line-height: 31px; }
+.t-18 { font-size: 18px; line-height: 28px; }
+
+.nowrap {
+  width: 123px;
+  white-space: nowrap;
+}
+
+/* ---------- Input boxes (360 x 42, 2px black inside stroke, radius 10) ---------- */
+.field {
+  position: absolute;
+  width: 360px;
+  height: 42px;
+  margin: 0;
+  padding: 0 14px;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  background: transparent;
+  color: #000000;
+  font-family: 'Aguafina Script', cursive;
+  font-size: 20px;
+}
+
+.field.has-eye {
+  padding-right: 44px;
+}
+
+/* ---------- Eye icon (19 x 14) ---------- */
+.eye {
+  position: absolute;
+  width: 19px;
+  height: 14px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.eye svg {
+  display: block;
+  overflow: visible;
+}
+
+/* ---------- Primary button (#2E0607, radius 10, white 20px text) ---------- */
+.btn-primary {
+  position: absolute;
+  height: 41px;
+  margin: 0;
+  padding: 5px 0;
+  border: 0;
+  border-radius: 10px;
+  background: #2e0607;
+  color: #ffffff;
+  font-family: 'Aguafina Script', cursive;
+  font-size: 20px;
+  line-height: 31px;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* ---------- Text link buttons ("Sign up" / "Login", 18px, #2E0607, padding 10) ---------- */
+.link {
+  position: absolute;
+  height: 48px;
+  margin: 0;
+  padding: 10px;
+  border: 0;
+  background: none;
+  color: #2e0607;
+  font-family: 'Aguafina Script', cursive;
+  font-size: 18px;
+  line-height: 28px;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* ---------- Confirmation boxes (443 x 256, #887759, radius 20) ---------- */
+.confirm {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 443px;
+  height: 256px;
+  transform: translate(-50%, -50%);
+  background: #887759;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.close {
+  position: absolute;
+  left: 24px;
+  top: 26px;
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.close svg {
+  display: block;
+  overflow: visible;
+}
+
+.confirm-text {
+  position: absolute;
+  left: 24px;
+  top: 82px;
+  width: 395px;
+  height: 112px;
+  margin: 0;
+  font-family: 'Aguafina Script', cursive;
+  font-size: 36px;
+  line-height: 56px;
+  text-align: center;
+  color: #000000;
+}

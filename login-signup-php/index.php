@@ -1,0 +1,116 @@
+<?php require __DIR__ . '/includes/bootstrap.php'; ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="csrf-token" content="<?= htmlspecialchars($_SESSION['csrf'], ENT_QUOTES) ?>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login / Sign up</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Aguafina+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Eye icon (Figma: Group > Vector x2, 2px black stroke, round caps/joins) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="icon-eye" viewBox="0 0 19.2258 14" overflow="visible">
+        <path d="M 18.870336532592773 5.961999893188477 C 19.344336539506912 6.581999897956848 19.344336539506912 7.419000089168549 18.870336532592773 8.038000106811523 C 17.377336502075195 9.987000107765198 13.795337677001953 14 9.613337516784668 14 C 5.431337356567383 14 1.8493373394012451 9.987000107765198 0.356337308883667 8.038000106811523 C 0.12539374828338623 7.741274863481522 -4.440892098500626e-16 7.376006364822388 0 7 C 0 6.623993635177612 0.12539374828338623 6.258725136518478 0.356337308883667 5.961999893188477 C 1.8493373394012451 4.012999892234802 5.431337356567383 0 9.613337516784668 0 C 13.795337677001953 0 17.377336502075195 4.012999892234802 18.870336532592773 5.961999893188477 Z"
+              fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path transform="translate(6.613 4)"
+              d="M 6 3 C 6 4.656854271888733 4.656854271888733 6 3 6 C 1.343145728111267 6 0 4.656854271888733 0 3 C 0 1.343145728111267 1.343145728111267 0 3 0 C 4.656854271888733 0 6 1.343145728111267 6 3 Z"
+              fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- Close icon (Figma: Group 1 > Vector x2, black fill) -->
+      <symbol id="icon-close" viewBox="0 0 30 30" overflow="visible">
+        <path fill="#000" fill-rule="evenodd" d="M 6.711263904481771 0.45721684728753625 C 12.21948212239927 -0.15240559821169225 17.778321278338073 -0.15240559821169225 23.28653949625557 0.45721684728753625 C 26.519832979132055 0.8176284092397401 29.130178310822764 3.3599432077933957 29.508900151019365 6.6054140712982266 C 30.163699598046808 12.18295988371192 30.163699598046808 17.817042222386466 29.508900151019365 23.394588034800158 C 29.128408579023905 26.64005889830499 26.51806316822018 29.180606285420364 23.28653949625557 29.542784574328874 C 17.778321278338073 30.152407019828104 12.21948212239927 30.152407019828104 6.711263904481771 29.542784574328874 C 3.4779704216052876 29.180606285420364 0.8676215561998613 26.64005889830499 0.4888997160032594 23.394588034800158 C -0.16296658958175664 17.81711509339058 -0.16296658958175664 12.182887012707805 0.4888997160032594 6.6054140712982266 C 0.8676215561998613 3.3599432077933957 3.4797402325171625 0.8176284092397401 6.711263904481771 0.45721684728753625 Z M 22.99276396490302 3.089634325719404 C 17.679792451327142 2.5017153293803087 12.318010105538029 2.5017153293803087 7.005038591962151 3.089634325719404 C 6.021499352412495 3.1985628991161748 5.103467641637193 3.635329524505887 4.3992524642755155 4.329372922965773 C 3.695037286913838 5.0234163214256595 3.2457674167199433 5.934201674421228 3.1240246947376806 6.914590156624079 C 2.494585821631077 12.287140988853068 2.494585821631077 17.71462434281306 3.1240246947376806 23.08717517504205 C 3.2461375205947003 24.067244688644525 3.6955704031582424 24.977623459346912 4.399752880473271 25.671314086327346 C 5.103935357788298 26.36500471330778 6.021763695370247 26.801518481841725 7.005038591962151 26.910367148549465 C 12.273519476907268 27.496919287036835 17.724283079957903 27.496919287036835 22.99276396490302 26.910367148549465 C 23.975720721686233 26.801146018342376 24.89314210191343 26.364469974927882 25.59697036388443 25.670811992472412 C 26.300798625855432 24.977154010016942 26.74997315167944 24.066977740674254 26.872007207343444 23.08717517504205 C 27.501446080450048 17.71462434281306 27.501446080450048 12.287140988853068 26.872007207343444 6.914590156624079 C 26.74960332470024 5.9351066648971695 26.30026640622521 5.025339452513267 25.596470791558847 4.332034188884788 C 24.892675176892485 3.6387289252563093 23.975456484212504 3.2023093651357373 22.99276396490302 3.093168358809074"/>
+          <path fill="#000" transform="translate(8.3291 8.3408)" d="M 0.4224498416488241 0.4217324968161938 C 0.6713185175570521 0.17359540557718134 1.0086706762996636 0.034218853181175055 1.3604053447869224 0.034218853181175055 C 1.7121400132741813 0.034218853181175055 2.0494921983878 0.17359540557718134 2.2983608742960278 0.4217324968161938 L 6.669590473175049 4.785537777932569 L 11.040819861086016 0.4217324968161938 C 11.162333069436471 0.2915483291232167 11.308866891212704 0.18713032449625439 11.47168076171008 0.11470887419636072 C 11.634494632207458 0.042287423896467044 11.810253093749703 0.0033452978728593483 11.988469794614051 0.000206211602473994 C 12.1666864954784 -0.0029328746679113606 12.343710330223232 0.02979545795821266 12.508981991735599 0.0964380512832846 C 12.674253653247966 0.16308064460835653 12.824385508814725 0.2622734328190174 12.950423362205532 0.3880972664755687 C 13.07646121559634 0.51392110013212 13.175822725531301 0.6637979965967675 13.24257867440833 0.8287890170467456 C 13.309334623285359 0.9937800374967236 13.34211862334845 1.1705032752934994 13.338974197657146 1.3484173536525246 C 13.335829771965843 1.5263314320115497 13.296821409168976 1.7017914452843235 13.22427677378485 1.8643288481939133 C 13.151732138400723 2.026866251103503 13.047136524230702 2.1731512497781655 12.916730920104227 2.294458121509422 L 8.545503219937691 6.658265113830566 L 12.916730920104227 11.022071895541893 C 13.151184544445472 11.27325569473131 13.278824244070654 11.605480493254705 13.272757232601661 11.948756778704452 C 13.266690221132668 12.292033064154198 13.12739009053524 12.619557499090341 12.884206397150049 12.862328252172018 C 12.641022703764857 13.105099005253695 12.312941166962636 13.244162595985284 11.969080986576191 13.250219305309741 C 11.625220806189747 13.2562760146342 11.292430910728621 13.128853054772982 11.040819861086016 12.894797546561348 L 6.669590473175049 8.530992449728565 L 2.2983608742960278 12.894797546561348 C 2.1768476659455733 13.024981714254325 2.0303138441693407 13.129399718881288 1.8674999736719635 13.201821169181182 C 1.7046861031745864 13.274242619481075 1.5289276416323414 13.31318474376931 1.3507109407679925 13.316323830039696 C 1.1724942399036435 13.319462916310082 0.9954704051588111 13.28673458541933 0.8301987436464446 13.220091992094257 C 0.6649270821340781 13.153449398769185 0.5147952529383244 13.054256610558523 0.3887573995475182 12.928432776901973 C 0.26271954615671195 12.802608943245422 0.16335803622174888 12.652732020454547 0.09660208734471991 12.487741000004569 C 0.029846138467690922 12.32274997955459 -0.0029378633337212323 12.146026741757815 0.00020656235758198277 11.96811266339879 C 0.0033509880488851976 11.790198585039764 0.042359352584074444 11.614738571766992 0.11490398796820142 11.452201168857401 C 0.1874486233523284 11.289663765947811 0.2920442375223498 11.14337876727315 0.4224498416488241 11.022071895541893 L 4.793677726412406 6.658265113830566 L 0.4224498416488241 2.294458121509422 C 0.17389068224686946 2.046012039341482 0.034277057653662624 1.7092326982034307 0.034277057653662624 1.3580952959996944 C 0.03427705765365948 1.006957893795958 0.17389068224686946 0.6701785789841341 0.4224498416488241 0.4217324968161938 Z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <main class="stage">
+
+    <!-- ===================== LOGIN ===================== -->
+    <section class="screen" id="login-screen">
+      <div class="bg bg-login" aria-hidden="true"></div>
+
+      <form class="form" id="login-form" novalidate>
+        <h1 class="t t-40" style="left:924px; top:132px; height:124px;">Good morrow! I bid thee a most gracious welcome!</h1>
+        <p class="t t-24" style="left:924px; top:263px;">Prithee, log thee into thine account.</p>
+
+        <label class="t t-20" for="login-username" style="left:938px; top:342px;">Thy name of use.</label>
+        <input class="field" id="login-username" name="username" type="text" autocomplete="username" required style="left:924px; top:368px;">
+
+        <label class="t t-20" for="login-password" style="left:938px; top:427px;">Thy watchword.</label>
+        <input class="field has-eye" id="login-password" name="password" type="password" autocomplete="current-password" required style="left:924px; top:452px;">
+        <button class="eye" type="button" aria-label="Show password" aria-pressed="false" data-target="login-password" style="left:1243px; top:466px;">
+          <svg width="19.2258" height="14" aria-hidden="true"><use href="#icon-eye"/></svg>
+        </button>
+
+        <button class="btn-primary" type="submit" style="left:924px; top:511px; width:360px;">Login</button>
+
+        <p class="t t-18 nowrap" style="left:1019px; top:558px;">Hast thou no account?</p>
+        <button class="link" type="button" data-go="signup-screen" style="left:1132px; top:548px; width:61px;">Sign up</button>
+      </form>
+    </section>
+
+    <!-- ===================== SIGN UP ===================== -->
+    <section class="screen" id="signup-screen" hidden>
+      <div class="bg bg-signup" aria-hidden="true"></div>
+
+      <form class="form" id="signup-form" novalidate>
+        <h1 class="t t-40" style="left:935px; top:120px; height:62px;">Make thee an account!</h1>
+        <p class="t t-24" style="left:933px; top:182px;">Thy adventure doth begin here.</p>
+
+        <label class="t t-20" for="signup-name" style="left:947px; top:246px;">Pray, impart thy full cognomen.</label>
+        <input class="field" id="signup-name" name="name" type="text" autocomplete="name" required style="left:933px; top:272px;">
+
+        <label class="t t-20" for="signup-email" style="left:947px; top:331px;">Enter thine email address</label>
+        <input class="field" id="signup-email" name="email" type="email" autocomplete="email" required style="left:933px; top:356px;">
+
+        <label class="t t-20" for="signup-password" style="left:947px; top:415px;">Enter thy watchword.</label>
+        <input class="field has-eye" id="signup-password" name="password" type="password" autocomplete="new-password" required style="left:933px; top:440px;">
+        <button class="eye" type="button" aria-label="Show password" aria-pressed="false" data-target="signup-password" style="left:1255px; top:456px;">
+          <svg width="19.2258" height="14" aria-hidden="true"><use href="#icon-eye"/></svg>
+        </button>
+
+        <label class="t t-20" for="signup-confirm" style="left:947px; top:499px;">Confirm thy watchword.</label>
+        <input class="field has-eye" id="signup-confirm" name="confirm" type="password" autocomplete="new-password" required style="left:933px; top:524px;">
+        <button class="eye" type="button" aria-label="Show password" aria-pressed="false" data-target="signup-confirm" style="left:1255px; top:540px;">
+          <svg width="19.2258" height="14" aria-hidden="true"><use href="#icon-eye"/></svg>
+        </button>
+
+        <button class="btn-primary" type="submit" style="left:932px; top:584px; width:359px;">Sign in</button>
+
+        <p class="t t-18 nowrap" style="left:1027px; top:631px;">Hast thou no account?</p>
+        <button class="link" type="button" data-go="login-screen" style="left:1140px; top:621px; width:51px;">Login</button>
+      </form>
+    </section>
+
+    <!-- ===================== CONFIRMATIONS ===================== -->
+    <div class="confirm" id="login-confirm" role="dialog" aria-modal="true" aria-labelledby="login-confirm-text" hidden>
+      <button class="close" type="button" aria-label="Close">
+        <svg width="30" height="30" viewBox="0 0 30 30" overflow="visible" aria-hidden="true">
+          <use href="#icon-close"/>
+        </svg>
+      </button>
+      <p class="confirm-text" id="login-confirm-text">Thy key hath turned the lock; access is granted unto thee.</p>
+    </div>
+
+    <div class="confirm" id="signup-confirm-box" role="dialog" aria-modal="true" aria-labelledby="signup-confirm-text" hidden>
+      <button class="close" type="button" aria-label="Close">
+        <svg width="30" height="30" viewBox="0 0 30 30" overflow="visible" aria-hidden="true">
+          <use href="#icon-close"/>
+        </svg>
+      </button>
+      <p class="confirm-text" id="signup-confirm-text">Hark! Thy name is now etched forever upon our eternal ledger.</p>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
